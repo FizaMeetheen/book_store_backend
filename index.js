@@ -25,6 +25,7 @@ bookStoreServer.use(express.json())
 // 9. tell server to use router
 bookStoreServer.use(router)
 
+bookStoreServer.use("/imgUploads",express.static("./imgUploads"))
 // 3.create port
 const PORT = 4000
 
