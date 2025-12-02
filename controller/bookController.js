@@ -104,3 +104,19 @@ exports.deleteUserAddedBookController = async(req,res)=>{
     
 }
 
+//purchase history
+exports.purchaseHistoryController = async(req,res)=>{
+    console.log('Inside Purchase History Controller');
+    const userMail = req.payload
+    try {
+        const purchaseHistory = await books.find({boughtby : userMail})
+        res.status(200).json(purchaseHistory)
+        
+    } catch (error) {
+        console.log(error);
+        
+    }
+    
+}
+
+

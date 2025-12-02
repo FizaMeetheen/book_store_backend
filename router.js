@@ -1,6 +1,6 @@
 const express = require("express")
-const { registerController, loginController } = require("./controller/userController")
-const { addBookController, getHomeBookCOntroller,  getAllBooksController, getBookController, getStatusBookController, deleteUserAddedBookController } = require("./controller/bookController")
+const { registerController, loginController, editProfileController } = require("./controller/userController")
+const { addBookController, getHomeBookCOntroller,  getAllBooksController, getBookController, getStatusBookController, deleteUserAddedBookController, purchaseHistoryController } = require("./controller/bookController")
 const jwtMiddleware = require("./middleware/jwtMiddleware")
 const multerConfig = require("./middleware/imgMulterMiddleware")
 
@@ -29,5 +29,11 @@ router.get('/userbooks',jwtMiddleware,getStatusBookController)
 
 //delete book
 router.delete('/delete-book/:id', deleteUserAddedBookController)
+
+//purchase history
+router.get('/purchase-history',jwtMiddleware, purchaseHistoryController)
+
+//edit profile
+router.put('/edit-profile',multerConfig.single("profile"),editProfileController)
 
 module.exports = router

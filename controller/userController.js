@@ -55,3 +55,18 @@ exports.loginController = async (req, res) => {
         res.status(500).json(error)
     }
 }
+
+//edit profile
+exports.editProfileController = async(req,res)=>{
+    console.log('Inside Edit profile COntroller');
+    const {username,password,bio,role,profile} = req.body
+    const updatedProfile = req.file ? req.file.filename : profile
+    const email = req.payload
+    try {
+        const editProfile = await users.findOneAndUpdate({email},{username,password,bio,role, profile : updatedProfile , email})
+        res.status(200).json(editProfile)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+    
+}
