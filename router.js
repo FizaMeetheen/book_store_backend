@@ -34,6 +34,6 @@ router.delete('/delete-book/:id', deleteUserAddedBookController)
 router.get('/purchase-history',jwtMiddleware, purchaseHistoryController)
 
 //edit profile
-router.put('/edit-profile',multerConfig.single("profile"),editProfileController)
+router.put('/edit-profile',jwtMiddleware,multerConfig.single("profile"),editProfileController)
 
 module.exports = router

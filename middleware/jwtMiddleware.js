@@ -6,7 +6,7 @@ const jwtMiddleware = (req , res, next) => {
     console.log(token);
 
     try {
-        const JWTResponse = jwt.verify(token , process.env.JWTSecretKey)
+        const JWTResponse = jwt.verify(token, process.env.JWTSecretKey)
         console.log(JWTResponse);
         req.payload = JWTResponse.userMail
         next()
